@@ -26,15 +26,11 @@ exports.find = (req, res) => {
   taskDB
     .find({})
     .then((task) => {
-      if (!task) {
-        res.status(404).send({ message: 'Not found task with id ' + id });
-      } else {
-        res.send(task);
-      }
+      res.send(task);
     })
     .catch((err) => {
       res.status(500).send({
-        message: err.message || 'Error Occured while retrieving user info',
+        message: err.message || 'Error Occured while retrieving task info',
       });
     });
 };
@@ -50,14 +46,14 @@ exports.update = (req, res) => {
     .then((task) => {
       if (!task) {
         res.status(404).send({
-          message: `cannot update user with ${id}. maybe user not found!`,
+          message: `cannot update task with ${id}. maybe task not found!`,
         });
       } else {
         res.send(task);
       }
     })
     .catch((err) => {
-      res.status(500).send({ message: 'Error update user information' });
+      res.status(500).send({ message: 'Error update task information' });
     });
 };
 
